@@ -1,0 +1,1 @@
+{"version":1,"defects":[],"times":{"AuthClientTest::testVodafoneAuth":0.363,"AuthServiceTest::testGetAccessTokenNotExpiredForVodafone":0.016,"AuthServiceTest::testGetAccessTokenExpiredForVodafone":0.005}}
