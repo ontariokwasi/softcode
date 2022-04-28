@@ -2,9 +2,8 @@
 require_once 'app/service/billingService.php';
 require_once 'app/client/BillingClient.php';
 
-// $request = file_get_contents("php://input");
-$request = $argv[1];
-// exit($request);
+$request = file_get_contents("php://input");
+// $request = $argv[1];
 if ($json = json_decode($request, true)) {
     $network = $json["network"];
     $msisdn = $json["msisdn"];
