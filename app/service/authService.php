@@ -3,7 +3,7 @@ require_once __DIR__ . '/../dao/authDao.php';
 require_once __DIR__ . '/../client/AuthClient.php';
 interface  AuthService
 {
-    public function getAccessToken(int $serviceId);
+    public function getAccessToken(int $serviceId): AccessToken|false;
 }
 class VodafoneAuthService implements AuthService
 {
@@ -12,7 +12,7 @@ class VodafoneAuthService implements AuthService
         $this->authDao = $authDao;
         $this->authClient = $authClient;
     }
-    public function getAccessToken(int $serviceId)
+    public function getAccessToken(int $serviceId): AccessToken|false
     {
         if ($authData = $this->authDao->getToken($serviceId, 'VODAFONE')) {
             $id = $authData['id'];
