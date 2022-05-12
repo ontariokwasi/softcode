@@ -8,7 +8,7 @@ interface MessagingService
     public function send(string $sender, string $message, string $destination, string $opId): string;
 }
 
-class VodafoneessagingService implements MessagingService
+class VodafoneMessagingService implements MessagingService
 {
     private AuthService $authService;
     private MessagingClient $client;
@@ -20,7 +20,7 @@ class VodafoneessagingService implements MessagingService
     {
         $token = $this->authService->getAccessToken($serviceId);
         if ($token) {
-            return $this->client->send($sender, $message, $destination, uniqid(), $token->getToken());
+            return $this->client->send($sender, $message, $destination, uniqid(), $token);
         }
         return "retrieving access token for $serviceId failed!";
     }

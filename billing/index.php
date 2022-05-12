@@ -1,6 +1,6 @@
 <?php
-require_once 'app/service/billingService.php';
-require_once 'app/client/BillingClient.php';
+require_once '../app/service/billingService.php';
+require_once '../app/client/BillingClient.php';
 
 $request = file_get_contents("php://input");
 // $request = $argv[1];
