@@ -15,6 +15,7 @@ class VodafoneMessagingService implements MessagingService
     public function __construct()
     {
         $this->authService = new VodafoneAuthService();
+        $this->client = new VodafoneMessagingCleint();
     }
     public function send(string $sender, string $message, string $destination, string $serviceId): string
     {

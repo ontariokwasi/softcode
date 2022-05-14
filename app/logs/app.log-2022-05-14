@@ -1,0 +1,91 @@
+INFO: Cool beans
+2022-05-14 06:32:48 INFO: Cool beans
+2022-05-14 06:32:48 DEBUG: Hot beans
+2022-05-14 06:32:48 ERROR: chilled beans
+2022-05-14 06:40:18 DEBUG: 233241477600 JOBS 100 is received for subscription
+2022-05-14 06:43:43 DEBUG: 233241477600 JOBS 100 is received for subscription
+2022-05-14 06:43:43 DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 07:11:23 LOGGER DEBUG: 233241477600 JOBS 100 is received for subscription
+2022-05-14 07:11:23 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 07:11:23 LOGGER DEBUG: Query->SELECT id, status FROM subscriptions WHERE msisdn='233241477600' AND service_id='1'
+2022-05-14 07:14:36 LOGGER DEBUG: 233241477600 JOBS 100 is received for subscription
+2022-05-14 07:14:36 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 07:14:36 LOGGER DEBUG: Query->SELECT id, status FROM subscriptions WHERE msisdn='233241477600' AND service_id='1'
+2022-05-14 07:30:49 LOGGER DEBUG: 233241477600 | JOBS | received for subscription
+2022-05-14 07:30:49 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='JOBS'
+2022-05-14 07:39:20 LOGGER DEBUG: 233241477600 | 100 | received for subscription
+2022-05-14 07:39:20 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 07:39:20 LOGGER DEBUG: Query->SELECT id, status FROM subscriptions WHERE msisdn='233241477600' AND service_id='1'
+2022-05-14 07:44:43 LOGGER DEBUG: 233241477600 | 100 | received for subscription
+2022-05-14 07:44:43 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 07:44:43 LOGGER DEBUG: Query->SELECT id, status FROM subscriptions WHERE msisdn='233241477600' AND service_id='1'
+2022-05-14 07:47:14 LOGGER DEBUG: 233241477600 | 100 | received for subscription
+2022-05-14 07:47:14 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 07:47:14 LOGGER DEBUG: Query->SELECT id, status FROM subscriptions WHERE msisdn='233241477600' AND service_id='1'
+2022-05-14 07:51:10 LOGGER DEBUG: 233241477600 | 100 | received for subscription
+2022-05-14 07:51:10 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 07:51:10 LOGGER DEBUG: Query->SELECT id, status FROM subscriptions WHERE msisdn='233241477600' AND service_id='1'
+2022-05-14 07:51:10 LOGGER DEBUG: Is active subscriber: 
+2022-05-14 07:52:43 LOGGER DEBUG: 233241477600 | 100 | received for subscription
+2022-05-14 07:52:43 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 07:52:43 LOGGER DEBUG: Query->SELECT id, status FROM subscriptions WHERE msisdn='233241477600' AND service_id='1'
+2022-05-14 07:52:43 LOGGER DEBUG: 1 Is active subscriber: 
+2022-05-14 07:52:43 LOGGER DEBUG: Query->INSERT INTO subscriptions(msisdn, shortcode, service_name, service_id, network, status, channel, subs_date) VALUES ('233241477600', '5255','TEST', '1', 'VODAFONE', 'ACTIVE', 'SMS', now())
+2022-05-14 07:54:58 LOGGER DEBUG: 233241477600 | 100 | received for subscription
+2022-05-14 07:54:58 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 07:54:58 LOGGER DEBUG: Query->SELECT id, status FROM subscriptions WHERE msisdn='233241477600' AND service_id='1'
+2022-05-14 07:54:58 LOGGER DEBUG: 1 Is active subscriber: 
+2022-05-14 07:54:58 LOGGER DEBUG: Query->INSERT INTO subscriptions(msisdn, shortcode, service_name, service_id, network, status, channel, subs_date) VALUES ('233241477600', '5255','TEST', '1', 'VODAFONE', 'ACTIVE', 'SMS', now())
+2022-05-14 07:55:34 LOGGER DEBUG: 233241477600 | 100 | received for subscription
+2022-05-14 07:55:34 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 07:55:34 LOGGER DEBUG: Query->SELECT id, status FROM subscriptions WHERE msisdn='233241477600' AND service_id='1'
+2022-05-14 07:55:34 LOGGER DEBUG: 1 Is active subscriber: 
+2022-05-14 07:55:34 LOGGER DEBUG: Query->INSERT INTO subscriptions(msisdn, shortcode, service_name, service_id, network, status, channel, subs_date) VALUES ('233241477600', '5255','TEST', '1', 'VODAFONE', 'ACTIVE', 'SMS', now())
+2022-05-14 08:01:22 LOGGER DEBUG: 233241477600 | 100 | received for subscription
+2022-05-14 08:01:22 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 08:01:22 LOGGER DEBUG: Query->SELECT id, status FROM subscriptions WHERE msisdn='233241477600' AND service_id='1'
+2022-05-14 08:01:22 LOGGER DEBUG: 1 Is active subscriber: 
+2022-05-14 08:01:22 LOGGER DEBUG: Query->INSERT INTO subscriptions(msisdn, shortcode, service_name, service_id, network, status, channel, subs_date) VALUES ('233241477600', '5255','TEST', '1', 'VODAFONE', 'ACTIVE', 'SMS', now())
+2022-05-14 08:01:22 LOGGER ERROR: Field 'id' doesn't have a default value
+2022-05-14 08:04:09 LOGGER DEBUG: 233241477600 | 100 | received for subscription
+2022-05-14 08:04:09 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 08:04:09 LOGGER DEBUG: Query->SELECT id, status FROM subscriptions WHERE msisdn='233241477600' AND service_id='1'
+2022-05-14 08:04:09 LOGGER DEBUG: Is active subscriber: 
+2022-05-14 08:04:09 LOGGER DEBUG: Query->INSERT INTO subscriptions(msisdn, shortcode, service_name, service_id, network, status, channel, subs_date) VALUES ('233241477600', '5255','TEST', '1', 'VODAFONE', 'ACTIVE', 'SMS', now())
+2022-05-14 08:04:09 LOGGER ERROR: Field 'id' doesn't have a default value
+#0 /Library/WebServer/Documents/scgw/app/dao/subscriptionDao.php(32): mysqli_query(Object(mysqli), 'INSERT INTO sub...')
+#1 /Library/WebServer/Documents/scgw/app/service/subscriptionService.php(42): SubscriptionsDao->subscribe(Object(Subscriber))
+#2 /Library/WebServer/Documents/scgw/app/service/vodafoneNgssmService.php(18): SubscriptionService->subscribe('233241477600', '100', 'SMS')
+#3 /Library/WebServer/Documents/scgw/notifications/vodafone/ngssm/index.php(18): VodafoneNGSSMService->subscribe('233241477600', '100', 'SMS')
+#4 {main}
+2022-05-14 08:05:43 LOGGER DEBUG: 233241477600 | 100 | received for subscription
+2022-05-14 08:05:43 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 08:05:43 LOGGER DEBUG: Query->SELECT id, status FROM subscriptions WHERE msisdn='233241477600' AND service_id='1'
+2022-05-14 08:05:43 LOGGER DEBUG: Is active subscriber: 
+2022-05-14 08:05:43 LOGGER DEBUG: Query->INSERT INTO subscriptions(msisdn, shortcode, service_name, service_id, network, status, channel, subs_date) VALUES ('233241477600', '5255','TEST', '1', 'VODAFONE', 'ACTIVE', 'SMS', now())
+2022-05-14 08:05:43 LOGGER INFO: successfully subscribed 233241477600 to TEST
+2022-05-14 08:06:50 LOGGER DEBUG: 233241477600 | 100 | received for subscription
+2022-05-14 08:06:50 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 08:06:50 LOGGER DEBUG: Query->SELECT id, status FROM subscriptions WHERE msisdn='233241477600' AND service_id='1'
+2022-05-14 08:06:50 LOGGER DEBUG: Is active subscriber: 1
+2022-05-14 08:07:07 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 08:07:07 LOGGER DEBUG: Query->SELECT id, status FROM subscriptions WHERE msisdn='233241477600' AND service_id='1'
+2022-05-14 08:07:43 LOGGER DEBUG: 233241477600 | 100 | received for subscription
+2022-05-14 08:07:43 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 08:07:43 LOGGER DEBUG: Query->SELECT id, status FROM subscriptions WHERE msisdn='233241477600' AND service_id='1'
+2022-05-14 08:07:43 LOGGER DEBUG: Is active subscriber: 
+2022-05-14 08:55:15 LOGGER DEBUG: 233241477600 | 100 | received for subscription
+2022-05-14 08:55:15 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 08:55:15 LOGGER DEBUG: Query->SELECT id, status FROM subscriptions WHERE msisdn='233241477600' AND service_id='1'
+2022-05-14 08:55:15 LOGGER DEBUG: Is active subscriber: 1
+2022-05-14 08:55:19 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='JOBS'
+2022-05-14 08:57:57 LOGGER DEBUG: 233241477600 | 100 | received for subscription
+2022-05-14 08:57:57 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 08:57:57 LOGGER DEBUG: Query->SELECT id, status FROM subscriptions WHERE msisdn='233241477600' AND service_id='1'
+2022-05-14 08:57:57 LOGGER DEBUG: Is active subscriber: 1
+2022-05-14 08:57:58 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 09:01:37 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 09:03:43 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 09:06:01 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 09:07:56 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-14 18:48:18 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
