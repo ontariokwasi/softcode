@@ -31,10 +31,24 @@ class VodafoneNGSSMService
             $shortcode = $product->shortcode;
             $serviceId = $product->id;
             $this->billingService->recordSuccessbilling($shortcode, $serviceId, $msisdn, $amount, "VODAFONE");
-            $this->messenger->send($shortcode, "get latest content", $msisdn, $opId);
+            if ($nextContent = $this->getContent($serviceId)) {
+                $this->messenger->send($shortcode, $nextContent->body, $msisdn, $opId, $nextContent->id);
+            } else {
+                //TODO:  keep on bench 
+            }
             return $this->successResponse();
         }
         return $this->failedResponse();
+    }
+
+    private function getContent(string $serviceId)
+    {
+        $contents = $this->messenger->getActiveContents($serviceId);
+        //TODO: implement properly
+        if (count($contents) > 0) {
+            return $contents[count($contents) - 1];
+        }
+        return null;
     }
 
     private function successResponse(string $message = "Request successfully processed", int $code = 200): string
