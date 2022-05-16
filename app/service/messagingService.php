@@ -9,6 +9,8 @@ interface MessagingService
 {
     public function send(string $sender, string $message, string $destination, string $opId): string;
     public function getActiveContents(string $serviceId): array;
+    public function getLatestRefIds(string $msisdn): array;
+    public function saveToBench(string $msisdn, string $serviceId);
 }
 
 class VodafoneMessagingService implements MessagingService
@@ -39,5 +41,15 @@ class VodafoneMessagingService implements MessagingService
     public function getActiveContents(string $serviceId): array
     {
         return $this->dao->getActiveContents($serviceId);
+    }
+
+    public function getLatestRefIds(string $msisdn): array
+    {
+        return $this->dao->getLatestRefIds($msisdn);
+    }
+
+    public function saveToBench(string $msisdn, string $serviceId)
+    {
+        $this->dao->saveToBench($msisdn, $serviceId);
     }
 }

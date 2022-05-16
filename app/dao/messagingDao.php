@@ -13,6 +13,7 @@ class MessagingDao
     private readonly string $jobsTable;
     private readonly string $messagesTable;
     private readonly string $activeContentsTable;
+    private readonly string $benchTable;
     private Logger $logger;
 
     public function __construct()
@@ -22,6 +23,7 @@ class MessagingDao
         $this->jobsTable = "jobs";
         $this->messagesTable = "messages";
         $this->activeContentsTable = "active_contents";
+        $this->benchTable = "bench";
         $this->logger = new Logger();
     }
 
@@ -35,10 +37,10 @@ class MessagingDao
                 $row['id'],
                 $row['service_id'],
                 $row['service_name'],
-                $row['shortcode'],
+                '0000',
                 $row['scheduled_by'],
                 $row['content'],
-                $row['service_id'],
+                new DateTime($row['sched_date']),
             );
             array_push($res, $content);
         }
@@ -49,10 +51,27 @@ class MessagingDao
     {
         $source = $message->sender;
         $destination = $message->destination;
-        $content = $message->body;
+        $content = mysqli_real_escape_string($this->connector, substr($message->body, 0, 16));
         $status = $message->status;
         $stmt = "INSERT INTO " . $this->messagesTable . "(source, destination, content, content_ref_id, status) 
         VALUES('$source', '$destination', '$content', '$contentRefId','$status')";
         return mysqli_query($this->connector, $stmt);
+    }
+
+    public function getLatestRefIds(string $msisdn): array
+    {
+        $res = array();
+        $stmt = "SELECT DISTINCT content_ref_id FROM " . $this->messagesTable . " WHERE destination='$msisdn' AND sent_date > CURDATE()";
+        $q = mysqli_query($this->connector, $stmt);
+        while ($row = mysqli_fetch_array($q)) {
+            array_push($res, $row['content_ref_id']);
+        }
+        return $res;
+    }
+
+    public function saveTobench(string $msisdn, string $serviceId)
+    {
+        $stmt = "INSERT INTO " . $this->benchTable . "(msisdn, service_id) VALUES ('$msisdn', '$serviceId')";
+        mysqli_query($this->connector, $stmt);
     }
 }

@@ -2,16 +2,19 @@
 require_once __DIR__ . '/billingService.php';
 require_once __DIR__ . '/messagingService.php';
 require_once __DIR__ . '/subscriptionService.php';
+require_once __DIR__ . '/../common/logger.php';
 class VodafoneNGSSMService
 {
     private SubscriptionService $subscriptionService;
     private MessagingService $messenger;
     private BillingService $billingService;
+    private Logger $logger;
     public function __construct()
     {
         $this->messenger = new VodafoneMessagingService();
         $this->subscriptionService = (new SubscriptionService("VODAFONE"));
         $this->billingService = new VodafoneBillingService();
+        $this->logger = new Logger();
     }
     public function subscribe(string $msisdn, string $opId, string $channel): string
     {
@@ -31,10 +34,13 @@ class VodafoneNGSSMService
             $shortcode = $product->shortcode;
             $serviceId = $product->id;
             $this->billingService->recordSuccessbilling($shortcode, $serviceId, $msisdn, $amount, "VODAFONE");
+            $this->logger->debug("retrieving contents for $serviceId");
             if ($nextContent = $this->getContent($serviceId)) {
+                $this->logger->debug("Found contents for $serviceId");
                 $this->messenger->send($shortcode, $nextContent->body, $msisdn, $opId, $nextContent->id);
             } else {
-                //TODO:  keep on bench 
+                $this->logger->debug("No contents for $serviceId");
+                $this->messenger->saveToBench($msisdn, $serviceId);
             }
             return $this->successResponse();
         }
@@ -43,10 +49,16 @@ class VodafoneNGSSMService
 
     private function getContent(string $serviceId)
     {
+        global $msisdn;
         $contents = $this->messenger->getActiveContents($serviceId);
-        //TODO: implement properly
+        $refIds = $this->messenger->getLatestRefIds($msisdn);
         if (count($contents) > 0) {
-            return $contents[count($contents) - 1];
+            $freshContents = array_filter($contents, function ($content) use ($refIds) {
+                return !in_array($content->id, $refIds);
+            });
+            if (count($freshContents) > 0) {
+                return array_pop($freshContents);
+            }
         }
         return null;
     }
