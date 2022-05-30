@@ -1,0 +1,6 @@
+vendor
+composer.json
+composer.lock
+test
+app/logs/*
+notifications/vodafone/ngssm/logs-*
