@@ -1,1 +1,159 @@
 2022-05-15 05:48:26 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 21:45:25 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 21:45:25 LOGGER ERROR: Unknown column 'msisdn' in 'where clause'
+#0 /Library/WebServer/Documents/scgw/app/dao/messagingDao.php(64): mysqli_query(Object(mysqli), 'SELECT content_...')
+#1 /Library/WebServer/Documents/scgw/app/service/messagingService.php(48): MessagingDao->getLatestRefIds('233241477600')
+#2 /Library/WebServer/Documents/scgw/app/service/vodafoneNgssmService.php(48): VodafoneMessagingService->getLatestRfids('233241477600')
+#3 /Library/WebServer/Documents/scgw/app/service/vodafoneNgssmService.php(34): VodafoneNGSSMService->getContent('1')
+#4 /Library/WebServer/Documents/scgw/notifications/vodafone/ngssm/index.php(24): VodafoneNGSSMService->recordSuccessBilling('100', '233241477600', '0.15')
+#5 {main}
+2022-05-15 21:48:38 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 21:52:23 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 21:52:23 LOGGER ERROR: Content::__construct(): Argument #4 ($shortcode) must be of type string, null given, called in /Library/WebServer/Documents/scgw/app/dao/messagingDao.php on line 43
+#0 /Library/WebServer/Documents/scgw/app/dao/messagingDao.php(43): Content->__construct('1', '1', 'TEST', NULL, 'admin', 'Hello I'm testi...', '1')
+#1 /Library/WebServer/Documents/scgw/app/service/messagingService.php(43): MessagingDao->getActiveContents('1')
+#2 /Library/WebServer/Documents/scgw/app/service/vodafoneNgssmService.php(47): VodafoneMessagingService->getActiveContents('1')
+#3 /Library/WebServer/Documents/scgw/app/service/vodafoneNgssmService.php(34): VodafoneNGSSMService->getContent('1')
+#4 /Library/WebServer/Documents/scgw/notifications/vodafone/ngssm/index.php(24): VodafoneNGSSMService->recordSuccessBilling('100', '233241477600', '0.15')
+#5 {main}
+2022-05-15 21:59:15 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 21:59:15 LOGGER ERROR: Content::__construct(): Argument #7 ($schedDate) must be of type DateTime, string given, called in /Library/WebServer/Documents/scgw/app/dao/messagingDao.php on line 43
+#0 /Library/WebServer/Documents/scgw/app/dao/messagingDao.php(43): Content->__construct('1', '1', 'TEST', '0000', 'admin', 'Hello I'm testi...', '1')
+#1 /Library/WebServer/Documents/scgw/app/service/messagingService.php(43): MessagingDao->getActiveContents('1')
+#2 /Library/WebServer/Documents/scgw/app/service/vodafoneNgssmService.php(47): VodafoneMessagingService->getActiveContents('1')
+#3 /Library/WebServer/Documents/scgw/app/service/vodafoneNgssmService.php(34): VodafoneNGSSMService->getContent('1')
+#4 /Library/WebServer/Documents/scgw/notifications/vodafone/ngssm/index.php(24): VodafoneNGSSMService->recordSuccessBilling('100', '233241477600', '0.15')
+#5 {main}
+2022-05-15 22:01:16 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 22:01:16 LOGGER ERROR: in_array(): Argument #2 ($haystack) must be of type array, null given
+#0 /Library/WebServer/Documents/scgw/app/service/vodafoneNgssmService.php(52): in_array('1', NULL)
+#1 [internal function]: VodafoneNGSSMService->{closure}(Object(Content))
+#2 /Library/WebServer/Documents/scgw/app/service/vodafoneNgssmService.php(53): array_filter(Array, Object(Closure))
+#3 /Library/WebServer/Documents/scgw/app/service/vodafoneNgssmService.php(34): VodafoneNGSSMService->getContent('1')
+#4 /Library/WebServer/Documents/scgw/notifications/vodafone/ngssm/index.php(24): VodafoneNGSSMService->recordSuccessBilling('100', '233241477600', '0.15')
+#5 {main}
+2022-05-15 22:04:59 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 22:07:23 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 22:07:24 LOGGER ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'm testing now..', '1','DeliveredToNetwork')' at line 2
+#0 /Library/WebServer/Documents/scgw/app/dao/messagingDao.php(58): mysqli_query(Object(mysqli), 'INSERT INTO mes...')
+#1 /Library/WebServer/Documents/scgw/app/service/messagingService.php(35): MessagingDao->saveMessage(Object(Message), '1')
+#2 /Library/WebServer/Documents/scgw/app/service/vodafoneNgssmService.php(35): VodafoneMessagingService->send('5255', 'Hello I'm testi...', '233241477600', '100', '1')
+#3 /Library/WebServer/Documents/scgw/notifications/vodafone/ngssm/index.php(24): VodafoneNGSSMService->recordSuccessBilling('100', '233241477600', '0.15')
+#4 {main}
+2022-05-15 22:10:02 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 22:10:20 LOGGER ERROR: Data too long for column 'content' at row 1
+#0 /Library/WebServer/Documents/scgw/app/dao/messagingDao.php(58): mysqli_query(Object(mysqli), 'INSERT INTO mes...')
+#1 /Library/WebServer/Documents/scgw/app/service/messagingService.php(35): MessagingDao->saveMessage(Object(Message), '1')
+#2 /Library/WebServer/Documents/scgw/app/service/vodafoneNgssmService.php(35): VodafoneMessagingService->send('5255', 'Hello I'm testi...', '233241477600', '100', '1')
+#3 /Library/WebServer/Documents/scgw/notifications/vodafone/ngssm/index.php(24): VodafoneNGSSMService->recordSuccessBilling('100', '233241477600', '0.15')
+#4 {main}
+2022-05-15 22:12:26 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 22:14:06 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 22:14:06 LOGGER ERROR: in_array(): Argument #2 ($haystack) must be of type array, null given
+#0 /Library/WebServer/Documents/scgw/app/service/vodafoneNgssmService.php(53): in_array('1', NULL)
+#1 [internal function]: VodafoneNGSSMService->{closure}(Object(Content))
+#2 /Library/WebServer/Documents/scgw/app/service/vodafoneNgssmService.php(54): array_filter(Array, Object(Closure))
+#3 /Library/WebServer/Documents/scgw/app/service/vodafoneNgssmService.php(34): VodafoneNGSSMService->getContent('1')
+#4 /Library/WebServer/Documents/scgw/notifications/vodafone/ngssm/index.php(24): VodafoneNGSSMService->recordSuccessBilling('100', '233241477600', '0.15')
+#5 {main}
+2022-05-15 22:15:33 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 22:15:33 LOGGER ERROR: in_array(): Argument #2 ($haystack) must be of type array, null given
+#0 /Library/WebServer/Documents/scgw/app/service/vodafoneNgssmService.php(53): in_array('1', NULL)
+#1 [internal function]: VodafoneNGSSMService->{closure}(Object(Content))
+#2 /Library/WebServer/Documents/scgw/app/service/vodafoneNgssmService.php(54): array_filter(Array, Object(Closure))
+#3 /Library/WebServer/Documents/scgw/app/service/vodafoneNgssmService.php(34): VodafoneNGSSMService->getContent('1')
+#4 /Library/WebServer/Documents/scgw/notifications/vodafone/ngssm/index.php(24): VodafoneNGSSMService->recordSuccessBilling('100', '233241477600', '0.15')
+#5 {main}
+2022-05-15 22:24:28 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 22:34:31 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 22:34:31 LOGGER DEBUG: retrieving contents for 1
+2022-05-15 22:34:31 LOGGER DEBUG: showing refIds: 1
+2022-05-15 22:34:31 LOGGER DEBUG: showing refIds: 1
+2022-05-15 22:34:31 LOGGER DEBUG: Found contents for 1
+2022-05-15 22:38:20 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 22:38:20 LOGGER DEBUG: retrieving contents for 1
+2022-05-15 22:38:20 LOGGER DEBUG: showing refIds: Array
+(
+    [0] => Array
+        (
+            [0] => 1
+        )
+
+)
+
+2022-05-15 22:38:20 LOGGER DEBUG: showing refIds: Array
+(
+    [0] => Array
+        (
+            [0] => 1
+        )
+
+)
+
+2022-05-15 22:38:21 LOGGER DEBUG: Found contents for 1
+2022-05-15 22:42:38 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 22:42:38 LOGGER DEBUG: retrieving contents for 1
+2022-05-15 22:42:38 LOGGER DEBUG: No contents for 1
+2022-05-15 22:45:44 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 22:45:44 LOGGER DEBUG: retrieving contents for 1
+2022-05-15 22:45:44 LOGGER DEBUG: Matched_id: 1
+2022-05-15 22:45:44 LOGGER DEBUG: Matched_id: 1
+2022-05-15 22:45:44 LOGGER DEBUG: Found contents for 1
+2022-05-15 22:46:24 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 22:46:24 LOGGER DEBUG: retrieving contents for 1
+2022-05-15 22:46:24 LOGGER DEBUG: Matched_id: 
+2022-05-15 22:46:24 LOGGER DEBUG: Matched_id: 
+2022-05-15 22:46:24 LOGGER DEBUG: No contents for 1
+2022-05-15 22:50:45 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 22:50:45 LOGGER DEBUG: retrieving contents for 1
+2022-05-15 22:50:45 LOGGER DEBUG: 1 in array Array
+(
+    [0] => Array
+        (
+            [0] => 1
+        )
+
+)
+
+2022-05-15 22:50:45 LOGGER DEBUG: 2 in array Array
+(
+    [0] => Array
+        (
+            [0] => 1
+        )
+
+)
+
+2022-05-15 22:50:45 LOGGER DEBUG: No contents for 1
+2022-05-15 22:57:24 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 22:57:24 LOGGER DEBUG: retrieving contents for 1
+2022-05-15 22:57:24 LOGGER DEBUG: No contents for 1
+2022-05-15 22:58:34 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 22:58:34 LOGGER DEBUG: retrieving contents for 1
+2022-05-15 22:58:34 LOGGER DEBUG: No contents for 1
+2022-05-15 22:59:49 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 22:59:49 LOGGER DEBUG: retrieving contents for 1
+2022-05-15 22:59:49 LOGGER DEBUG: 1 in array Array
+(
+    [0] => 1
+)
+
+2022-05-15 22:59:49 LOGGER DEBUG: 2 in array Array
+(
+    [0] => 1
+)
+
+2022-05-15 22:59:49 LOGGER DEBUG: Found contents for 1
+2022-05-15 23:35:39 LOGGER DEBUG: SELECT * FROM services WHERE network='VODAFONE' AND op_id='100'
+2022-05-15 23:35:39 LOGGER DEBUG: retrieving contents for 1
+2022-05-15 23:35:39 LOGGER DEBUG: 1 in array Array
+(
+    [0] => 1
+)
+1
+2022-05-15 23:35:39 LOGGER DEBUG: 2 in array Array
+(
+    [0] => 1
+)
+
+2022-05-15 23:35:39 LOGGER DEBUG: No contents for 1

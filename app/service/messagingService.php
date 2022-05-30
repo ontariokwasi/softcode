@@ -4,6 +4,7 @@ require_once __DIR__ . '/../service/authService.php';
 require_once __DIR__ . '/../constants.php';
 require_once __DIR__ . '/../dao/messagingDao.php';
 require_once __DIR__ . '/../model/message/message.php';
+require_once __DIR__ . '/../common/logger.php';
 
 interface MessagingService
 {
@@ -18,15 +19,19 @@ class VodafoneMessagingService implements MessagingService
     private AuthService $authService;
     private MessagingClient $client;
     private MessagingDao $dao;
+    private Logger $logger;
     public function __construct()
     {
         $this->authService = new VodafoneAuthService();
         $this->client = new VodafoneMessagingCleint();
         $this->dao = new MessagingDao();
+        $this->logger = new Logger();
     }
     public function send(string $sender, string $message, string $destination, string $opId, string $contentRef = '0'): string
     {
+        $this->logger->debug("getting token..");
         $token = $this->authService->getAccessToken($opId);
+        $this->logger->debug("token received: " . $token);
         if ($token) {
             $resp =  $this->client->send($sender, $message, $destination, uniqid(), $token);
             $respArr = json_decode($resp, true);

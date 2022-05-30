@@ -1,6 +1,8 @@
-vendor
+vendor/
 composer.json
 composer.lock
 test
 app/logs/*
 notifications/vodafone/ngssm/logs-*
+app/dao/connector.php
+app/.DS_Store
