@@ -13,7 +13,7 @@ class SubscriptionsDao
         global $con;
         $this->connector = isset($connector) ? $connector : $con;
         $this->table = "subscriptions";
-        $this->logger = new Logger();
+        $this->logger = Logger::getDefaultInstanceWithId($this);
     }
 
     public function subscribe(Subscriber $subscriber): bool

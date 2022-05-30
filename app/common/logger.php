@@ -11,6 +11,11 @@ class Logger
         $this->id = strtoupper($id);
     }
 
+    public static function getDefaultInstanceWithId(Object $object): Logger
+    {
+        return new Logger(Settings::APPLOGS, get_class($object));
+    }
+
     private function write(string $log): void
     {
         file_put_contents($this->filename . "-" . date('Y-m-d'), date('Y-m-d H:i:s ') . $this->id . ' ' . $log . PHP_EOL, FILE_APPEND);
@@ -29,5 +34,10 @@ class Logger
     public function error(string $log)
     {
         $this->write("ERROR: " . $log);
+    }
+
+    public function setId(string $id)
+    {
+        $this->id = $id;
     }
 }

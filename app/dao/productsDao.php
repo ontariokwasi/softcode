@@ -14,7 +14,7 @@ class ProductsDao
         global $con;
         $this->connector = isset($connector) ? $connector : $con;
         $this->table = "services";
-        $this->logger = new Logger();
+        $this->logger = Logger::getDefaultInstanceWithId($this);
     }
 
     public function getProductByOpId(string $opId, NetworkProvider $networkProvider): Product|bool

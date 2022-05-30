@@ -18,7 +18,7 @@ class SubscriptionService
         $this->productsDao = new ProductsDao(null);
         $this->subscriptionsDao = new SubscriptionsDao(null);
         $this->network = NetworkProvider::fromString($network);
-        $this->logger = new Logger();
+        $this->logger = Logger::getDefaultInstanceWithId($this);
         $this->init();
     }
 

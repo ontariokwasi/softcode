@@ -25,7 +25,7 @@ class VodafoneMessagingService implements MessagingService
         $this->authService = new VodafoneAuthService();
         $this->client = new VodafoneMessagingCleint();
         $this->dao = new MessagingDao();
-        $this->logger = new Logger();
+        $this->logger = Logger::getDefaultInstanceWithId($this);
     }
     public function send(string $sender, string $message, string $destination, string $opId, string $contentRef = '0'): string
     {

@@ -14,7 +14,7 @@ class VodafoneNGSSMService
         $this->messenger = new VodafoneMessagingService();
         $this->subscriptionService = (new SubscriptionService("VODAFONE"));
         $this->billingService = new VodafoneBillingService();
-        $this->logger = new Logger();
+        $this->logger = Logger::getDefaultInstanceWithId($this);
     }
     public function subscribe(string $msisdn, string $opId, string $channel): string
     {

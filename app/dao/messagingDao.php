@@ -24,7 +24,7 @@ class MessagingDao
         $this->messagesTable = "messages";
         $this->activeContentsTable = "active_contents";
         $this->benchTable = "bench";
-        $this->logger = new Logger();
+        $this->logger = Logger::getDefaultInstanceWithId($this);
     }
 
     public function getActiveContents(string $serviceId): array
