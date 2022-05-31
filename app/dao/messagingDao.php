@@ -74,4 +74,18 @@ class MessagingDao
         $stmt = "INSERT INTO " . $this->benchTable . "(msisdn, service_id) VALUES ('$msisdn', '$serviceId')";
         mysqli_query($this->connector, $stmt);
     }
+
+    public function scheduleContent(Content $content): bool
+    {
+        $serviceId = $content->serviceId;
+        $serviceName = $content->serviceName;
+        $message = mysqli_real_escape_string($this->connector, $content->body);
+        $scheduledBy = $content->scheduledBy;
+        $schedDate = $content->formatSchedDate();
+        $status = 'PENDING';
+        $stmt = "INSERT INTO " . $this->jobsTable . "(service_id, service_name, content, scheduled_by, status, sched_date) 
+        VALUES('$serviceId', '$serviceName', '$message', '$scheduledBy', '$status','$schedDate')";
+        $this->logger->debug($stmt);
+        return mysqli_query($this->connector, $stmt);
+    }
 }

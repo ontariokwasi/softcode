@@ -27,4 +27,15 @@ class ProductsDao
             return new Product($row['id'], $row['name'], $row['op_id'], $row['network'], $row['shortcode']);
         } else return false;
     }
+
+    public function getProductByName(string $productName): Product|bool
+    {
+
+        $stmt = "SELECT * FROM " . $this->table . " WHERE name='$productName'";
+        $this->logger->debug($stmt);
+        $result = mysqli_query($this->connector, $stmt);
+        if ($row = mysqli_fetch_assoc($result)) {
+            return new Product($row['id'], $row['name'], $row['op_id'], $row['network'], $row['shortcode']);
+        } else return false;
+    }
 }
