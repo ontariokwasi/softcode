@@ -31,7 +31,7 @@ class SchedulerService
             $serviceId = $product->id;
             $serviceName = $product->name;
             $shortcode = $product->shortcode;
-            $message = $json['message'];
+            $message = urldecode($json['message']);
             $scheduledBy = $json['scheduledBy'];
             $schedDate = $json['schedDate'];
             $content = new Content("", $serviceId, $serviceName, $shortcode, $scheduledBy, $message, new DateTime($schedDate));
