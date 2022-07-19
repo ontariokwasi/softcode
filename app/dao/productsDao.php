@@ -27,6 +27,19 @@ class ProductsDao
             return new Product($row['id'], $row['name'], $row['op_id'], $row['network'], $row['shortcode']);
         } else return false;
     }
+    public function getAllProducts(NetworkProvider $networkProvider): array
+    {
+        $network = $networkProvider->name;
+        $stmt = "SELECT * FROM " . $this->table . " WHERE network='$network'";
+        $this->logger->debug($stmt);
+        $result = mysqli_query($this->connector, $stmt);
+        $res = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $product = new Product($row['id'], $row['name'], $row['op_id'], $row['network'], $row['shortcode']);
+            array_push($res, $product);
+        }
+        return $res;
+    }
 
     public function getProductByName(string $productName): Product|bool
     {

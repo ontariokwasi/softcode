@@ -29,7 +29,27 @@ class MessagingDao
 
     public function getActiveContents(string $serviceId): array
     {
-        $stmt = "SELECT * FROM " . $this->activeContentsTable . " WHERE service_id='$serviceId'";
+        $stmt = "SELECT * FROM " . $this->activeContentsTable . " WHERE service_id='$serviceId' AND sched_date < now()";
+        $q = mysqli_query($this->connector, $stmt);
+        $res = array();
+        while ($row = mysqli_fetch_array($q)) {
+            $content = new Content(
+                $row['id'],
+                $row['service_id'],
+                $row['service_name'],
+                '0000',
+                $row['scheduled_by'],
+                $row['content'],
+                new DateTime($row['sched_date']),
+            );
+            array_push($res, $content);
+        }
+        return $res;
+    }
+
+    public function getReadyContents(): array
+    {
+        $stmt = "SELECT * FROM " . $this->activeContentsTable . " WHERE DATE_FORMAT(sched_date, '%Y-%m-%d %H:%i') = DATE_FORMAT(Now(), '%Y-%m-%d %H:%i');";
         $q = mysqli_query($this->connector, $stmt);
         $res = array();
         while ($row = mysqli_fetch_array($q)) {
@@ -69,10 +89,21 @@ class MessagingDao
         return $res;
     }
 
-    public function saveTobench(string $msisdn, string $serviceId)
+    public function saveTobench(string $msisdn, string $serviceId, string $offerName)
     {
-        $stmt = "INSERT INTO " . $this->benchTable . "(msisdn, service_id) VALUES ('$msisdn', '$serviceId')";
+        $stmt = "INSERT INTO " . $this->benchTable . "(msisdn, service_id, offer_id) VALUES ('$msisdn', '$serviceId','$offerName')";
         mysqli_query($this->connector, $stmt);
+    }
+
+    public function getBenchedMsisdns(string $serviceId, string $offerName): array
+    {
+        $res = array();
+        $stmt = "SELECT * FROM " . $this->benchTable . " WHERE service_id = '$serviceId' AND offer_id='$offerName'";
+        $q = mysqli_query($this->connector, $stmt);
+        while ($row = mysqli_fetch_array($q)) {
+            array_push($res, $row['msisdn']);
+        }
+        return $res;
     }
 
     public function scheduleContent(Content $content): bool

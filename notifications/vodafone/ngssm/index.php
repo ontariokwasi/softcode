@@ -12,6 +12,7 @@ try {
         $channelType = $json['channelType'];
         $chargedAmount = $json['chargedAmount'];
         $serviceId = $json['serviceId'];
+        $offerName = $json['offerName'];
 
         $ngssmService = new VodafoneNGSSMService();
         if ($serviceNotificationType == "SUB") {
@@ -21,6 +22,14 @@ try {
         }
         // finally check if it is a success charge
         if ($state == "ACTIVE") {
+            $today = date('Y-m-d');
+            $offerNumber = substr($offerName, -1);
+            $dir =  __DIR__ . "/bench/$serviceName/$today";
+            if (!file_exists($dir)) {
+                mkdir($dir, 0777, true);
+            }
+            $filename = "$dir/$offerNumber";
+            file_put_contents($filename, "$msisdn" . PHP_EOL, FILE_APPEND);
             echo $ngssmService->recordSuccessBilling($serviceId, $msisdn, $chargedAmount);
         }
         file_put_contents("logs-" . date('Y-m-d'), date('Y-m-dTH:i:s') . " " . json_encode($json) . PHP_EOL, FILE_APPEND);

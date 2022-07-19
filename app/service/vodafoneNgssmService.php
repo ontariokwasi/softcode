@@ -6,7 +6,6 @@ require_once __DIR__ . '/../common/logger.php';
 class VodafoneNGSSMService
 {
     private SubscriptionService $subscriptionService;
-    private MessagingService $messenger;
     private BillingService $billingService;
     private Logger $logger;
     public function __construct()
@@ -35,32 +34,9 @@ class VodafoneNGSSMService
             $serviceId = $product->id;
             $this->billingService->recordSuccessbilling($shortcode, $serviceId, $msisdn, $amount, "VODAFONE");
             $this->logger->debug("retrieving contents for $serviceId");
-            if ($nextContent = $this->getContent($serviceId)) {
-                $this->logger->debug("Found contents for $serviceId");
-                $this->messenger->send($shortcode, $nextContent->body, $msisdn, $opId, $nextContent->id);
-            } else {
-                $this->logger->debug("No contents for $serviceId");
-                $this->messenger->saveToBench($msisdn, $serviceId);
-            }
             return $this->successResponse();
         }
         return $this->failedResponse();
-    }
-
-    private function getContent(string $serviceId)
-    {
-        global $msisdn;
-        $contents = $this->messenger->getActiveContents($serviceId);
-        $refIds = $this->messenger->getLatestRefIds($msisdn);
-        if (count($contents) > 0) {
-            $freshContents = array_filter($contents, function ($content) use ($refIds) {
-                return !in_array($content->id, $refIds);
-            });
-            if (count($freshContents) > 0) {
-                return array_pop($freshContents);
-            }
-        }
-        return null;
     }
 
     private function successResponse(string $message = "Request successfully processed", int $code = 200): string

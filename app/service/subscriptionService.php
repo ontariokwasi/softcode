@@ -77,6 +77,11 @@ class SubscriptionService
         return $this->productsDao->getProductByOpId($opId, NetworkProvider::fromString($network));
     }
 
+    public function getProducts(): array
+    {
+        return $this->productsDao->getAllProducts($this->network);
+    }
+
     private function init(): void
     {
         switch ($this->network) {

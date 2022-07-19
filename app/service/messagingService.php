@@ -11,7 +11,8 @@ interface MessagingService
     public function send(string $sender, string $message, string $destination, string $opId): string;
     public function getActiveContents(string $serviceId): array;
     public function getLatestRefIds(string $msisdn): array;
-    public function saveToBench(string $msisdn, string $serviceId);
+    public function saveToBench(string $msisdn, string $serviceId, string $offerName);
+    public function getbenchedMsisdns(string $serviceId, string $offerName): array;
 }
 
 class VodafoneMessagingService implements MessagingService
@@ -42,19 +43,43 @@ class VodafoneMessagingService implements MessagingService
         }
         return "retrieving access token for $opId failed!";
     }
+    public function sendBulk(string $sender, string $message, array $destinations, string $opId): void
+    {
+        $this->logger->debug("getting token for bulk..");
+        $token = $this->authService->getAccessToken($opId);
+        if ($token) {
+            foreach ($destinations as $destination) {
+                $resp =  $this->client->send($sender, $message, $destination, uniqid(), $token);
+                $respArr = json_decode($resp, true);
+                $status = $respArr['outboundSMSMessageRequest']['deliveryInfoList']['deliveryInfo'][0]['deliveryStatus'];
+                $mesg = new Message($sender, $destination, $message, $status);
+                $this->dao->saveMessage($mesg, 0);
+            }
+        }
+    }
 
     public function getActiveContents(string $serviceId): array
     {
         return $this->dao->getActiveContents($serviceId);
     }
 
+    public function getReadyContents(): array
+    {
+        return $this->dao->getReadyContents();
+    }
+
+    public function getbenchedMsisdns(string $serviceId, string $offerName): array
+    {
+        return $this->dao->getbenchedMsisdns($serviceId, $offerName);
+    }
     public function getLatestRefIds(string $msisdn): array
     {
         return $this->dao->getLatestRefIds($msisdn);
     }
 
-    public function saveToBench(string $msisdn, string $serviceId)
+    public function saveToBench(string $msisdn, string $serviceId, string $offerName)
     {
-        $this->dao->saveToBench($msisdn, $serviceId);
+        $offerId = substr(trim($offerName), -1, 1);
+        $this->dao->saveToBench($msisdn, $serviceId, $offerId);
     }
 }
