@@ -41,7 +41,7 @@ function getBenchMsidns($serviceName, $offerNumber): array
     $fileName = __DIR__ . "/bench/$serviceName/$today/$offerNumber";
     if (file_exists($fileName)) {
         $fc = file_get_contents($fileName);
-        $msisdns = explode("\n", $fc);
+        $msisdns = explode("\n", trim($fc));
         unlink($fileName);
     }
     return $msisdns;
