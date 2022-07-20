@@ -33,7 +33,6 @@ class VodafoneNGSSMService
             $shortcode = $product->shortcode;
             $serviceId = $product->id;
             $this->billingService->recordSuccessbilling($shortcode, $serviceId, $msisdn, $amount, "VODAFONE");
-            $this->logger->debug("retrieving contents for $serviceId");
             return $this->successResponse();
         }
         return $this->failedResponse();
