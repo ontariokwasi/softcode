@@ -21,7 +21,7 @@ class VodafoneMessagingCleint implements MessagingClient
         $headers = ["content-type:application/json", "Authorization:Bearer $token"];
         $this->logger->debug("Sending message: $msgId->" . $body);
         $resp = ApiProvider::send(new ApiRequest($url, $headers, $body), HttpMethod::POST);
-        $this->logger->debug("Received response: $msgId->" . $body);
+        $this->logger->debug("Received response: $msgId->" . $resp);
         return $resp;
     }
 }
