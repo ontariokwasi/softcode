@@ -43,6 +43,19 @@ function getBenchMsidns($serviceName, $offerNumber): array
         $fc = file_get_contents($fileName);
         $msisdns = explode("\n", trim($fc));
         unlink($fileName);
+    } elseif (is_dir(dirname($fileName))) {
+        $benchDir = dirname($fileName);
+        $files = scandir($benchDir);
+        foreach ($files as $file) {
+            // pick the first file that is not a . prefixed
+            if (substr($file, 0, 1) != '.') {
+                $fileName = "$benchDir/$file";
+                $fc = file_get_contents($fileName);
+                $msisdns = explode("\n", trim($fc));
+                unlink($fileName);
+                break;
+            }
+        }
     }
     return $msisdns;
 }
