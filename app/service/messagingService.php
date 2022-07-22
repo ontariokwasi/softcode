@@ -49,11 +49,15 @@ class VodafoneMessagingService implements MessagingService
         $token = $this->authService->getAccessToken($opId);
         if ($token) {
             foreach ($destinations as $destination) {
-                $resp =  $this->client->send($sender, $message, $destination, uniqid(), $token);
-                $respArr = json_decode($resp, true);
-                $status = $respArr['outboundSMSMessageRequest']['deliveryInfoList']['deliveryInfo'][0]['deliveryStatus'];
-                $mesg = new Message($sender, $destination, $message, $status);
-                $this->dao->saveMessage($mesg, 0);
+                try {
+                    $resp =  $this->client->send($sender, $message, $destination, uniqid(), $token);
+                    $respArr = json_decode($resp, true);
+                    $status = $respArr['outboundSMSMessageRequest']['deliveryInfoList']['deliveryInfo'][0]['deliveryStatus'];
+                    $mesg = new Message($sender, $destination, $message, $status);
+                    $this->dao->saveMessage($mesg, 0);
+                } catch (\Throwable $th) {
+                    $this->logger->error("Error occurred sending message: $sender|$message|$destination|$opId|resp: $resp\n" . $th->getMessage());
+                }
             }
         }
     }
