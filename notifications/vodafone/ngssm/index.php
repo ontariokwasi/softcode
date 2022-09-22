@@ -13,12 +13,14 @@ try {
         $chargedAmount = $json['chargedAmount'];
         $serviceId = $json['serviceId'];
         $offerName = $json['offerName'];
+        $lastChar = substr($offerName, -1, 1);
+        $offerNumber = is_numeric($lastChar) && $lastChar > 1 ? 0 : 1;
 
         $ngssmService = new VodafoneNGSSMService();
         if ($serviceNotificationType == "SUB") {
-            echo $ngssmService->subscribe($msisdn, $serviceId, $channelType);
+            echo $ngssmService->subscribe($msisdn, $serviceId, $channelType, $offerNumber);
         } else if ($serviceNotificationType == "UNSUB") {
-            echo $ngssmService->unsubscribe($msisdn, $serviceId, $channelType);
+            echo $ngssmService->unsubscribe($msisdn, $serviceId, $channelType, $offerNumber);
         }
         // finally check if it is a success charge
         if ($state == "ACTIVE") {

@@ -15,14 +15,18 @@ class VodafoneNGSSMService
         $this->billingService = new VodafoneBillingService();
         $this->logger = Logger::getDefaultInstanceWithId($this);
     }
-    public function subscribe(string $msisdn, string $opId, string $channel): string
+    public function subscribe(string $msisdn, string $opId, string $channel, int $offerNumber): string
     {
-        $this->subscriptionService->subscribe($msisdn, $opId, $channel);
+        if ($offerNumber == 1) {
+            $this->subscriptionService->subscribe($msisdn, $opId, $channel);
+        }
         return $this->successResponse();
     }
-    public function unsubscribe(string $msisdn, string $opId, string $channel): string
+    public function unsubscribe(string $msisdn, string $opId, string $channel, int $offerNumber): string
     {
-        $this->subscriptionService->unsubscribe($msisdn, $opId, $channel);
+        if ($offerNumber == 1) {
+            $this->subscriptionService->unsubscribe($msisdn, $opId, $channel);
+        }
         return $this->successResponse();
     }
 
