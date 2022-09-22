@@ -16,7 +16,7 @@ if ($services = select(SERVICE_STMT)) {
         $vodaMessenger = new VodafoneMessagingService();
         foreach ($contents as  $key => $content) {
             $message = urldecode($content['message']);
-            $msisdns = getBenchMsidns($originalName, $key);
+            $msisdns = getBenchMsidns($originalName, $key + 1);
             if (count($msisdns) > 0) {
                 $vodaMessenger->sendBulk($shortcode, $message, $msisdns, $serviceId);
             }
